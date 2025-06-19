@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Project Tracker Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .high { background-color: #fdecea; }
+    .medium { background-color: #fff3cd; }
+    .low { background-color: #e2f0cb; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Project Dashboard</h1>
+  </header>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Project Name</th>
+        <th>Project Type</th>
+        <th>Contract Type</th>
+        <th>Status</th>
+        <th>Days Remaining</th>
+        <th>Deadline</th>
+        <th>Current Stage</th>
+        <th>Assigned Team</th>
+        <th>Lead Engineer</th>
+        <th>Location</th>
+        <th>Priority</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="high">
+        <td>1</td>
+        <td>Project X</td>
+        <td>ELV / AV / ICT</td>
+        <td>Lump Sum / Budgetary</td>
+        <td>In Progress</td>
+        <td class="calc-days" data-deadline="2025-08-30"></td>
+        <td>30-08-2025</td>
+        <td>BOQ</td>
+        <td>Ali, Sarah, John</td>
+        <td>Owen</td>
+        <td>Riyadh</td>
+        <td>High</td>
+      </tr>
+      <!-- Add more rows here as needed -->
+    </tbody>
+  </table>
+
+  <script>
+    function calculateDaysRemaining() {
+      const rows = document.querySelectorAll(".calc-days");
+      rows.forEach(cell => {
+        const deadline = new Date(cell.dataset.deadline);
+        const now = new Date();
+        const diff = Math.ceil((deadline - now) / (1000 * 60 * 60 * 24));
+        cell.textContent = diff >= 0 ? diff : "Overdue";
+      });
+    }
+    calculateDaysRemaining();
+  </script>
+</body>
+</html>
